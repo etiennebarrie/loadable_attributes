@@ -31,4 +31,10 @@ describe LoadableAttributes do
     instance.foo
     expect(instance).to be_loaded
   end
+
+  it 'is loaded when load! is called' do
+    instance = Test.new
+    instance.load!
+    expect(instance).to be_loaded
+  end
 end
