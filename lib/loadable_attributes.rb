@@ -5,9 +5,7 @@ module LoadableAttributes
     attrs.each do |attr|
       ivar = "@#{attr}"
       define_method(attr) do
-        unless loaded?
-          load!
-        end
+        load!
         instance_variable_get ivar
       end
     end
@@ -16,8 +14,12 @@ module LoadableAttributes
 
   module InstanceMethods
     def load!
-      load
-      @loaded = true
+      unless loaded?
+        load
+        @loaded = true
+      else
+        false
+      end
     end
 
     def loaded?

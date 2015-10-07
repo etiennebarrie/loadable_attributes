@@ -37,4 +37,11 @@ describe LoadableAttributes do
     instance.load!
     expect(instance).to be_loaded
   end
+
+  it 'is not loaded twice when using load!' do
+    instance = Test.new
+    expect(instance).to receive(:load).once
+    expect(instance.load!).to be true
+    expect(instance.load!).to be false
+  end
 end
